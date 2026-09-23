@@ -1,0 +1,6 @@
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
+import VideoCard from '../../components/VideoCard/VideoCard'
+import { videos } from '../../data/videos'
+function History() { const [history, setHistory] = useState(() => videos.filter((video) => localStorage.getItem(`history-${video.id}`) === 'true')); const clear = () => { history.forEach((video) => localStorage.removeItem(`history-${video.id}`)); setHistory([]) }; return <div className="mx-auto max-w-5xl p-5 sm:p-8"><div className="flex items-center justify-between gap-4"><div><h1 className="text-2xl font-bold">Watch history</h1><p className="mt-1 text-sm text-zinc-400">Videos you have watched.</p></div>{history.length > 0 && <button onClick={clear} className="text-sm font-semibold text-blue-400 hover:text-blue-300">Clear all watch history</button>}</div>{history.length ? <div className="mt-7 space-y-5">{history.map((video) => <VideoCard video={video} compact key={video.id} />)}</div> : <div className="mt-8 rounded-2xl bg-zinc-900 p-8 text-center"><h2 className="font-semibold">Your watch history is empty</h2><Link to="/" className="mt-5 inline-block rounded-full bg-white px-4 py-2 text-sm font-semibold text-black">Browse videos</Link></div>}</div> }
+export default History

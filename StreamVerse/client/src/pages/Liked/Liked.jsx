@@ -1,0 +1,6 @@
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
+import VideoCard from '../../components/VideoCard/VideoCard'
+import { videos } from '../../data/videos'
+function Liked() { const [liked, setLiked] = useState(() => videos.filter((video) => localStorage.getItem(`like-${video.id}`) === 'true')); const clear = () => { liked.forEach((video) => localStorage.removeItem(`like-${video.id}`)); setLiked([]) }; return <div className="mx-auto max-w-5xl p-5 sm:p-8"><div className="flex items-center justify-between gap-4"><div><h1 className="text-2xl font-bold">Liked videos</h1><p className="mt-1 text-sm text-zinc-400">Your public playlist of liked videos.</p></div>{liked.length > 0 && <button onClick={clear} className="text-sm font-semibold text-blue-400 hover:text-blue-300">Remove all likes</button>}</div>{liked.length ? <div className="mt-7 space-y-5">{liked.map((video) => <VideoCard video={video} compact key={video.id} />)}</div> : <div className="mt-8 rounded-2xl bg-zinc-900 p-8 text-center"><h2 className="font-semibold">No liked videos yet</h2><p className="mt-2 text-sm text-zinc-400">Tap Like on a video to save it here.</p><Link to="/" className="mt-5 inline-block rounded-full bg-white px-4 py-2 text-sm font-semibold text-black">Browse videos</Link></div>}</div> }
+export default Liked

@@ -1,0 +1,15 @@
+:root {
+  --color-primary: #FF3B30;
+  --color-primary-hover: #E62E24;
+
+  --color-background: #09090B;
+  --color-surface: #18181B;
+  --color-card: rgba(24, 24, 27, 0.7);
+
+  --color-border: rgba(255,255,255,.08);
+
+  --color-text: #FAFAFA;
+  --color-muted: #A1A1AA;
+
+  --radius-card: 24px;
+}
